@@ -565,9 +565,9 @@ body {
       width: 100vw;
       height: calc(100vh - 80px); }
       #load-content .container .arrow {
-        width: 60px;
+        width: 50px;
         right: 5%;
-        bottom: -2vh;
+        bottom: -4vh;
         z-index: -2; }
       #load-content .container .wallet-bg {
         width: 100%;
@@ -636,7 +636,7 @@ body {
             width: 120vw;
             position: absolute;
             right: 15vw;
-            top: 3vh; }
+            top: 2vh; }
       #load-content .container.container-03 {
         -webkit-transform: translateX(100vw);
         transform: translateX(100vw); }
@@ -644,10 +644,10 @@ body {
           -webkit-transform: translateX(0);
           transform: translateX(0); }
         #load-content .container.container-03 .app-icon {
-          width: 120px;
-          height: 120px;
-          left: calc(50% - 60px);
-          top: 16vh; }
+          width: 100px;
+          height: 100px;
+          left: calc(50% - 50px);
+          top: 15vh; }
           #load-content .container.container-03 .app-icon.wallet {
             background: #fff url("../img/wallet-logo.svg") center center no-repeat; }
           #load-content .container.container-03 .app-icon.node {
@@ -665,12 +665,13 @@ body {
           text-align: center;
           width: 100%;
           height: calc(100vh - 80px);
-          position: relative; }
+          position: relative;
+          bottom: 0; }
           #load-content .container.container-03 .main-app.wallet {
-            background: url("../img/wallet-app.png") center 5vh no-repeat;
+            background: url("../img/wallet-app.png") center 3vh no-repeat;
             background-size: 60%; }
           #load-content .container.container-03 .main-app.node {
-            background: url("../img/node-app.png") center 5vh no-repeat;
+            background: url("../img/node-app.png") center 3vh no-repeat;
             background-size: 60%; }
         #load-content .container.container-03 .wallet-bg {
           width: 100vw;
@@ -683,8 +684,8 @@ body {
         #load-content .container.container-03 .node-bg {
           width: 100vw;
           height: calc(100vh - 80px);
-          background: url("../img/node-bg-02.png") right bottom no-repeat;
-          background-size: 130%; }
+          background: url("../img/node-bg-02.png") 10vw bottom no-repeat;
+          background-size: 110%; }
     #load-content.node::-webkit-scrollbar-thumb {
       background: #1a4cf0; }
     #load-content.wallet::-webkit-scrollbar-thumb {
@@ -702,5 +703,5 @@ body {
           height: 6px; }
       #load-content #loaded-content .phone-container {
         width: 65vw;
-        left: calc(50% - 35vw);
+        left: calc(50% - 31vw);
         top: 11vh; } }

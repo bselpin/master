@@ -792,9 +792,9 @@ body {
             height: calc(100vh - 80px);
 
             .arrow {
-                width: 60px;
+                width: 50px;
                 right: 5%;
-                bottom: -2vh;
+                bottom: -4vh;
                 z-index: -2;
             }
 
@@ -891,7 +891,7 @@ body {
                         width: 120vw;
                         position: absolute;
                         right: 15vw;
-                        top: 3vh;
+                        top: 2vh;
                     }
                 }
             }
@@ -906,10 +906,10 @@ body {
                 }
 
                 .app-icon {
-                    width: 120px;
-                    height: 120px;
-                    left: calc(50% - 60px);
-                    top: 16vh;
+                    width: 100px;
+                    height: 100px;
+                    left: calc(50% - 50px);
+                    top: 15vh;
 
                     &.wallet {
                         background: #fff url('../img/wallet-logo.svg') center center no-repeat;
@@ -940,14 +940,15 @@ body {
                     width: 100%;
                     height: calc(100vh - 80px);
                     position: relative;
+                    bottom: 0;
 
                     &.wallet {
-                        background: url('../img/wallet-app.png') center 5vh no-repeat;
+                        background: url('../img/wallet-app.png') center 3vh no-repeat;
                         background-size: 60%;
                     }
 
                     &.node {
-                        background: url('../img/node-app.png') center 5vh no-repeat;
+                        background: url('../img/node-app.png') center 3vh no-repeat;
                         background-size: 60%;
                     }
                 }
@@ -967,8 +968,8 @@ body {
                 .node-bg {
                     width: 100vw;
                     height: calc(100vh - 80px);
-                    background: url('../img/node-bg-02.png') right bottom no-repeat;
-                    background-size: 130%;
+                    background: url('../img/node-bg-02.png') 10vw bottom no-repeat;
+                    background-size: 110%;
                 }
             }
         }
@@ -1007,7 +1008,7 @@ body {
 
             .phone-container {
                 width: 65vw;
-                left: calc(50% - 35vw);
+                left: calc(50% - 31vw);
                 top: 11vh;
             }
         }
