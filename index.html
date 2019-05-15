@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+        <meta http-equiv="X-UA-Compatible" content="ie=edge">
+        <link rel="stylesheet" href="src/css/main.css">
+        <link rel="icon" type="image/png" sizes="96x96" href="src/favicon/favicon-96x96.png">
+        <link rel="icon" type="image/png" sizes="32x32" href="src/favicon/favicon-32x32.png">
+        <link rel="icon" type="image/png" sizes="16x16" href="src/favicon/favicon-16x16.png">
+        <meta property="og:locale" content="ko_KR">
+        <meta property="og:title" content="통합 코인 플랫폼, 마스터">
+        <meta property="og:description" content="마스터노드풀, 마스터월렛의 랜딩 페이지입니다.">
+        <meta property="og:type" content="website">
+        <meta property="og:url" content="https://bs.io">
+        <title>크립토 거래의 마스터, 마스터노드풀 & 마스터월렛</title>
+            </head>
+
+    <body>
+        <header id="header">
+            <p>Dream Cloud Project</p>
+            <span class="copy-right">Copyright 2019. Dream Cloud Project. All rights Reserved.</span>
+        </header>
+
+        <div id="main-container">
+
+            <div id="master-node" class="master">
+                <div class="title">코인으로<br>시작되는<br><span>재테크</span>
+                    <p>- 마스터노드풀</p>
+                </div>
+                <div class="title-mobile">마스터노드풀</div>
+                <div class="logo"><img src="src/img/logo/node-logo-off.png" alt=""></div>
+                <div class="text">
+                    <p>코인 거래에 적금 개념을 도입하여 새로운 코인 생태계를 조성하고 보다 적극적인 자산으로서 코인을 운용할 수 있는 새로운 형태의 Dapp입니다.</p>
+                </div>
+            </div>
+
+            <div id="master-node-hidden" class="master">
+                <div class="title">코인으로<br>시작되는<br><span>재테크</span>
+                    <p>- 마스터노드풀</p>
+                </div>
+                <div class="title-mobile">마스터노드풀</div>
+                <div class="logo"><img src="src/img/logo/node-logo-on.png" alt=""></div>
+                <div class="text">
+                    <p>코인 거래에 적금 개념을 도입하여 새로운 코인 생태계를 조성하고 보다 적극적인 자산으로서 코인을 운용할 수 있는 새로운 형태의 Dapp입니다.</p>
+                </div>
+                <div class="waves">
+                    <div class="wave"></div>
+                    <div class="wave"></div>
+                </div>
+            </div>
+
+            <div id="master-wallet" class="master">
+                <div class="title">재테크와<br>연결되는<br><span>멀티월렛</span>
+                    <p>- 마스터월렛</p>
+                </div>
+                <div class="title-mobile">마스터월렛</div>
+                <div class="logo"><img src="src/img/logo/wallet-logo-off.png" alt=""></div>
+                <div class="text">
+                    <p>마스터노드풀과 연동되는 멀티월렛으로 비트코인, 이더리움과 각종 상장 코인들은 최신 보안기술로 안전하게 거래할 수 있습니다.</p>
+                </div>
+            </div>
+
+            <div id="master-wallet-hidden" class="master active">
+                <div class="title">재테크와<br>연결되는<br><span>멀티월렛</span>
+                    <p>- 마스터월렛</p>
+                </div>
+                <div class="title-mobile">마스터월렛</div>
+                <div class="logo"><img src="src/img/logo/wallet-logo-on.png" alt=""></div>
+                <div class="text">
+                    <p>마스터노드풀과 연동되는 멀티월렛으로 비트코인, 이더리움과 각종 상장 코인들을 최신 보안기술로 안전하게 거래할 수 있습니다.</p>
+                </div>
+                <div class="waves">
+                    <div class="wave"></div>
+                    <div class="wave"></div>
+                </div>
+            </div>
+
+            <div id="load-content" class="node">
+
+            </div>
+
+        </div>
+    </body>
+
+    <script src="src/js/jquery-3.4.1.min.js"></script>
+    <script src="src/js/jquery-migrate-1.4.1.min.js"></script>
+    <script src="src/js/jquery.mobile-1.5.min.js"></script>
+
+    <script>
+        $('#master-node').on('click', function() {
+            $('#master-node-hidden').addClass('active');
+            $('#master-wallet-hidden').removeClass('active');
+            $('#load-content').addClass('node').removeClass('wallet')
+            $('#loaded-content').fadeOut(300);
+            setTimeout(function() {
+                $.ajax({
+                    type: "GET",
+                    url: 'master-node.html',
+                    success: function(data) {
+                        $("#load-content").html(data);
+                    }
+                });
+            }, 300)
+        })
+
+        $('#master-wallet').on('click', function() {
+            $('#master-wallet-hidden').addClass('active');
+            $('#master-node-hidden').removeClass('active');
+            $('#load-content').addClass('wallet').removeClass('node')
+            $('#loaded-content').fadeOut(300);
+            setTimeout(function() {
+                $.ajax({
+                    type: "GET",
+                    url: 'master-wallet.html',
+                    success: function(data) {
+                        $("#load-content").html(data);
+                    }
+                });
+            }, 300)
+        })
+
+        setTimeout(function() {
+            $.ajax({
+                type: "GET",
+                url: 'master-wallet.html',
+                success: function(data) {
+                    $("#load-content").html(data);
+                }
+            });
+        }, 0);
+
+    </script>
+
+</html>

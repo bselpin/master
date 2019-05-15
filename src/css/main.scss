@@ -1,0 +1,1015 @@
+@charset "utf-8";
+@import "variable.scss";
+@import "reset.css";
+@import "anim.css";
+@import url('https://fonts.googleapis.com/css?family=Noto+Sans+KR:300,400,500,700&subset=korean');
+@import url('https://cdn.jsdelivr.net/gh/moonspam/NanumSquare@1.0/nanumsquare.css');
+@import url('https://use.fontawesome.com/releases/v5.4.1/css/all.css');
+@import url('https://fonts.googleapis.com/css?family=Raleway:300,400,500,700');
+
+.ui-loader-icon, .ui-loader-header {
+    display: none !important;
+}
+
+* {
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+div,
+p,
+span {
+    cursor: default;
+}
+
+::-webkit-scrollbar {
+    width: 8px;
+    height: 8px;
+}
+
+::-webkit-scrollbar-thumb {
+    background: $blackw;
+}
+
+body {
+    font-size: 16px;
+    font-family: 'Raleway', 'nanumsquare', 'Noto Sans KR', sans-serif;
+    color: $black;
+    letter-spacing: -0.5px;
+    -ms-user-select: none;
+    -moz-user-select: -moz-none;
+    -webkit-user-select: none;
+    user-select: none;
+}
+
+#header {
+    width: 100%;
+    height: 40px;
+    padding: 10px;
+    font-size: 16px;
+    border-bottom: 1px solid $grayb;
+    position: fixed;
+    top: 0;
+    left: 0;
+    background: #fff;
+    z-index: 999;
+
+    p {
+        font-weight: 700;
+    }
+
+    .copy-right {
+        position: absolute;
+        top: 13px;
+        right: 10px;
+        font-size: 12px;
+        color: $blackw2;
+    }
+}
+
+#main-container {
+    width: 100%;
+    height: 100vh;
+    overflow: hidden;
+    position: relative;
+}
+
+.master {
+    width: 31vw;
+    height: calc(50vh - 20px);
+    position: absolute;
+    cursor: pointer;
+    z-index: 50;
+
+    &.active {
+        -webkit-animation-name: active;
+        animation-name: active;
+        -webkit-animation-duration: 1s;
+        animation-duration: 1s;
+    }
+
+    .title {
+        font-size: 34px;
+        color: $grayw;
+        font-family: 'nanumsquare', sans-serif;
+        line-height: 1.5;
+        position: absolute;
+        top: 30px;
+        left: 5%;
+        font-weight: 300;
+        letter-spacing: 3px;
+        opacity: 0.4;
+        text-shadow: 1px 1px 3px rgba(0,0,0,0.15);
+
+        span {
+            font-weight: 300;
+        }
+
+        p {
+            font-weight: 800;
+            font-size: 24px;
+            letter-spacing: 1px;
+        }
+    }
+
+    .title-mobile {
+        display: none;
+    }
+
+    .logo {
+        display: inline-block;
+        width: 130px;
+        height: 130px;
+        position: absolute;
+        right: 5%;
+        top: 30px;
+        opacity: 0.2;
+        cursor: pointer;
+    }
+
+    .text {
+        text-align: right;
+        padding: 20px 5% 20px 15%;
+        font-size: 17px;
+        word-break: keep-all;
+        line-height: 1.9;
+        color: $grayw;
+        opacity: 0.4;
+        position: absolute;
+        bottom: 30px;
+        font-family: 'nanumsquare', sans-serif;
+        text-shadow: 1px 1px 3px rgba(0,0,0,0.15);
+
+        p {
+            font-weight: 400;
+        }
+    }
+
+    .waves {
+        width: 100%;
+        height: 5%;
+        position: absolute;
+        bottom: 0;
+        left: 0;
+
+        .wave {
+            background: url("../img/wave.svg") repeat-x;
+            position: absolute;
+            top: -140px;
+            width: 6400px;
+            height: 198px;
+            -webkit-animation: wave 16s cubic-bezier(0.36, 0.45, 0.63, 0.53) infinite;
+            animation: wave 16s cubic-bezier(0.36, 0.45, 0.63, 0.53) infinite;
+            -webkit-transform: translate3d(0, 0, 0);
+            transform: translate3d(0, 0, 0);
+        }
+
+        .wave:nth-of-type(2) {
+            top: -115px;
+            -webkit-animation: wave 16s cubic-bezier(0.36, 0.45, 0.63, 0.53) -.125s infinite, swell 16s ease -1.25s infinite;
+            animation: wave 16s cubic-bezier(0.36, 0.45, 0.63, 0.53) -.125s infinite, swell 16s ease -1.25s infinite;
+            opacity: 1;
+        }
+    }
+}
+
+#master-node {
+    bottom: 0;
+    left: 0;
+    transition: all 0.35s $ease;
+    background: linear-gradient(228deg, rgba(245,245,255,1) 0%, rgba(146,156,165,1) 100%);
+
+    &:hover {
+        -webkit-filter: brightness(1.1);
+        filter: brightness(1.1);
+    }
+}
+
+#master-node-hidden {
+    bottom: 0;
+    background: linear-gradient(228deg, rgba(210,250,255,1) 0%, rgba(30,90,255,1) 100%);
+    z-index: 99;
+    display: none;
+    opacity: 0;
+    transition: all 1s $ease;
+    overflow: hidden;
+
+    &.active {
+        display: block;
+        opacity: 1;
+    }
+
+    .logo,
+    .text,
+    .title {
+        opacity: 1;
+    }
+}
+
+#master-wallet {
+    background: linear-gradient(228deg, rgba(245,245,253,1) 0%, rgba(146,136,160,1) 100%);
+    height: calc(50vh - 20px);
+    position: absolute;
+    top: 40px;
+    left: 0;
+    transition: all 1s $ease;
+
+    &:hover {
+        -webkit-filter: brightness(1.1);
+        filter: brightness(1.1);
+    }
+
+    .logo {
+        width: 145px;
+        height: 145px;
+    }
+}
+
+#master-wallet-hidden {
+    top: 40px;
+    background: linear-gradient(228deg, rgba(255,255,255,1) 0%, rgba(120,35,181,1) 100%);
+    z-index: 99;
+    display: none;
+    opacity: 0;
+    transition: all 0.3s $ease;
+    overflow: hidden;
+    overflow-x: hidden;
+
+    .logo {
+        width: 145px;
+        height: 145px;
+    }
+
+    &.active {
+        display: block;
+        opacity: 1;
+    }
+
+    .logo,
+    .text,
+    .title {
+        opacity: 1;
+    }
+}
+
+#load-content {
+    background: #fff;
+    width: 67%;
+    height: calc(100vh - 40px);
+    position: absolute;
+    top: 40px;
+    right: 0;
+    z-index: 0;
+
+    .container {
+        background: #fff;
+        padding: 30px;
+        width: 69vw;
+        height: calc(100vh - 40px);
+        transition: all 1.1s $ease;
+        -webkit-transform: translateX(0);
+        transform: translateX(0);
+        position: relative;
+        top: 0;
+        right: 0;
+
+        .arrow {
+            position: absolute;
+            width: 150px;
+            right: 20px;
+            bottom: 30px;
+            height: 80px;
+            opacity: 0;
+
+            &.arrow-p {
+                background: url('../img/arrow-p.svg') 0 0 no-repeat;
+            }
+
+            &.arrow-b {
+                background: url('../img/arrow-b.svg') 0 0 no-repeat;
+            }
+
+            &.active {
+                opacity: 1;
+                -webkit-animation: fadeInRight 3.5s;
+                animation: fadeInRight 3.5s;
+            }
+        }
+
+        .wallet-bg {
+            position: absolute;
+            width: 69vw;
+            height: calc(100vh - 40px);
+            top: 0;
+            right: 0;
+            z-index: -1;
+            background: url('../img/wallet-bg.png') 450px -40px no-repeat;
+            opacity: 0;
+
+            &.active {
+                opacity: 0.9;
+                -webkit-animation: fadeInBg 3.5s;
+                animation: fadeInBg 3.5s;
+            }
+        }
+
+        .node-bg {
+            position: absolute;
+            width: 69vw;
+            height: calc(100vh - 40px);
+            top: 0;
+            right: 0;
+            z-index: -1;
+            background: url('../img/node-bg.png') -100px 100px no-repeat;
+            opacity: 0;
+
+            &.active {
+                opacity: 0.9;
+                -webkit-animation: fadeInBg 3.5s;
+                animation: fadeInBg 3.5s;
+            }
+        }
+
+        .title {
+            position: absolute;
+            top: 170px;
+            left: 30px;
+            font-size: 20px;
+            font-weight: 700;
+            font-family: 'nanumsquare', sans-serif;
+            color: $black;
+        }
+
+        .line {
+            position: absolute;
+            top: 34vh;
+            left: 30px;
+            width: 35px;
+            height: 8px;
+            opacity: 0;
+
+            &.wallet {
+                background: $second;
+            }
+
+            &.node {
+                background: $pri;
+            }
+
+            &.active {
+                opacity: 1;
+                -webkit-animation: fadeInLeft 3.5s;
+                animation: fadeInLeft 3.5s;
+            }
+        }
+
+        .main-text {
+            font-size: 20px;
+            font-family: 'nanumsquare', sans-serif;
+            position: absolute;
+            top : 50vh;
+            left: 30px;
+            line-height: 2;
+            letter-spacing: -0.5px;
+            color: $blackw;
+            opacity: 0;
+
+            &.wallet {
+                strong {
+                    font-weight: 900;
+                    color: $second;
+                }
+            }
+
+            &.node{
+                strong {
+                    font-weight: 900;
+                    color: $pri;
+                }
+            }
+
+            p {
+                font-weight: 500;
+            }
+
+            &.active {
+                opacity: 1;
+                -webkit-animation: fadeInLeft 3.5s;
+                animation: fadeInLeft 3.5s;
+            }
+        }
+
+        .sub-text {
+            position: absolute;
+            right: 30px;
+            top: 30px;
+            font-size: 11px;
+            font-weight: 800;
+            color: $grayb;
+            text-align: right;
+            line-height: 2.4;
+            opacity: 0;
+            letter-spacing: 1px;
+
+            &.active {
+                opacity: 1;
+                -webkit-animation: fadeInRight 3.5s;
+                animation: fadeInRight 3.5s;
+            }
+        }
+
+        &.container-01 {
+            position: absolute;
+            top: 0;
+            right: 0;
+
+            &.prepare {
+                -webkit-transform: translateX(-69vw);
+                transform: translateX(-69vw);
+            }
+        }
+
+        &.container-02 {
+            position: absolute;
+            top: 0;
+            right: 0;
+            -webkit-transform: translateX(69vw);
+            transform: translateX(69vw);
+
+            &.active {
+                -webkit-transform: translateX(0);
+                transform: translateX(0);
+            }
+
+            &.prepare {
+                -webkit-transform: translateX(-69vw);
+                transform: translateX(-69vw);
+            }
+
+            .title-text {
+                position: absolute;
+                top: 290px;
+                left: 30px;
+                text-align: left;
+                font-size: 36px;
+                font-family: 'nanumsquare', sans-serif;
+                font-weight: 500;
+                line-height: 1.4;
+
+                &.wallet {
+                    color: $second;
+                }
+
+                &.node {
+                    color: $pri;
+                }
+
+                .info {
+                    font-size: 16px;
+                    color: $black;
+                    line-height: 2;
+                    p {
+                        font-weight: 500;
+                    }
+                }
+
+                span {
+                    font-weight: 900;
+                }
+            }
+
+            .mockup {
+                position: absolute;
+                top: 0;
+                left: 0;
+                width: 69vw;
+                height: calc(100vh - 40px);
+
+                .mockup-img {
+                    width: 850px;
+                    position: absolute;
+                    right: 4vw;
+                    top: calc(50vh - 370px);
+                }
+            }
+        }
+
+        &.container-03 {
+            position: absolute;
+            top: 0;
+            right: 0;
+            -webkit-transform: translateX(69vw);
+            transform: translateX(69vw);
+
+            &.active {
+                -webkit-transform: translateX(0);
+                transform: translateX(0);
+            }
+
+            .app-icon {
+                width: 180px;
+                height: 180px;
+                background-size: 80%;
+                position: absolute;
+                left: calc(50% - 90px);
+                top: 200px;
+                box-shadow: 0 0 30px rgba(0,0,0,0.07);
+                border-radius: 20px;
+
+                &.wallet {
+                    background: #fff url('../img/wallet-logo.svg') center center no-repeat;
+                }
+
+                &.node {
+                    background: #fff url('../img/node-logo.svg') center center no-repeat;
+                }
+            }
+
+            .app-info {
+                width: 100%;
+                position: absolute;
+                text-align: center;
+                padding: 400px;
+
+                &.wallet {
+                    color: $second;
+                }
+
+                &.node {
+                    color: $pri;
+                }
+
+                p {
+                    font-size: 18px;
+                    font-weight: 700;
+                    margin-bottom: 80px;
+                    line-height: 1.7;
+                }
+
+                img {
+                    width: 200px;
+                    transition: all 0.3s ease;
+
+                    &:hover {
+                        opacity: 0.8;
+                        -webkit-filter: brightness(1.05);
+                        filter: brightness(1.05);
+                    }
+                }
+            }
+
+            .main-app {
+                text-align: center;
+                width: 100%;
+                height: calc(100vh - 40px);
+                position: relative;
+
+                &.wallet {
+                    background: url('../img/wallet-app.png') center 70px no-repeat;
+                    background-size: 40%;
+                }
+
+                &.node {
+                    background: url('../img/node-app.png') center 70px no-repeat;
+                    background-size: 40%;
+                }
+            }
+
+            .wallet-bg {
+                position: absolute;
+                width: 69vw;
+                height: calc(100vh - 40px);
+                top: 0;
+                right: 0;
+                opacity: 1;
+                background: url('../img/wallet-bg.png') 800px -200px no-repeat;
+                background-size: 50%;
+
+                &.wallet-bg-sm {
+                    background: url('../img/wallet-bg-02.png') 200px 700px no-repeat;
+                    background-size: 25%;
+                }
+            }
+
+            .node-bg {
+                position: absolute;
+                width: 69vw;
+                height: calc(100vh - 40px);
+                top: 0;
+                right: 0;
+                opacity: 1;
+                background: url('../img/node-bg-02.png') right bottom no-repeat;
+                background-size: 90%;
+            }
+        }
+    }
+
+    &.node::-webkit-scrollbar-thumb {
+        background: $pri;
+    }
+
+    &.wallet::-webkit-scrollbar-thumb {
+        background: $second;
+    }
+
+    #loaded-content {
+        width: 200%;
+
+        .indicator {
+            position: fixed;
+            z-index: 9999;
+            width: 69vw;
+            bottom: 0;
+            right: 0;
+            height: 8px;
+
+            .indicator-inner {
+                position: absolute;
+                bottom: 0;
+                left: 0;
+                width: 33.3%;
+                height: 8px;
+                transition: all 1s $ease;
+
+                &.wallet {
+                    background: $second;
+                }
+
+                &.node {
+                    background: $pri;
+                }
+
+                &.step-02 {
+                    width: 66.6%;
+                }
+
+                &.step-03 {
+                    width: 100%;
+                }
+            }
+        }
+
+        .logo-img,
+        .title {
+            opacity: 0;
+
+            &.active {
+                opacity: 1;
+                -webkit-animation: fadeIn 1.1s;
+                animation: fadeIn 1.1s;
+            }
+        }
+
+        .phone-container {
+            position: absolute;
+            left: calc(50% - 230px);
+            top: 3vh;
+            transition: all 1s $ease;
+            opacity: 0;
+
+            &.active {
+                opacity: 1;
+                -webkit-animation: fadeInUp 2.3s;
+                animation: fadeInUp 2.3s;
+            }
+
+            .phone-img {
+                -webkit-animation: wiggle 10s ease-in-out infinite;
+                animation: wiggle 10s ease-in-out infinite;
+            }
+        }
+    }
+}
+
+@media (min-width: 320px) and (max-width: 480px) {
+    #header {
+        height: 30px;
+        padding: 8px;
+        font-size: 12px;
+
+        .copy-right {
+            top: 10px;
+            font-size: 7px;
+        }
+    }
+
+    .master {
+        width: 50vw;
+        height: 50px;
+        overflow: hidden;
+
+        &.active {
+            -webkit-animation-name: active;
+            animation-name: active;
+            -webkit-animation-duration: 1s;
+            animation-duration: 1s;
+        }
+
+        .title {
+            display: none;
+        }
+
+        .title-mobile {
+            display: block;
+            font-size: 14px;
+            color: $grayw;
+            position: absolute;
+            top: 15px;
+            left: 5%;
+            font-weight: 300;
+            opacity: 0.4;
+            text-shadow: 1px 1px 3px rgba(0,0,0,0.15);
+        }
+
+        .logo {
+            top: 8px;
+            opacity: 0.2;
+            width: 30px;
+        }
+
+        .text {
+            display: none;
+        }
+
+        .waves {
+            display: none;
+        }
+    }
+
+    #master-node {
+        bottom: auto;
+        left: auto;
+        top: 30px;
+        right: 0;
+        height: 50px;
+    }
+
+    #master-node-hidden {
+        bottom: auto;
+        left: auto;
+        top: 30px;
+        right: 0;
+
+        .title-mobile {
+            opacity: 1;
+        }
+    }
+
+    #master-wallet {
+        height: 50px;
+        top: 30px;
+
+        .logo {
+            width: 38px;
+            height: 38px;
+        }
+    }
+
+    #master-wallet-hidden {
+        top: 30px;
+
+        .logo {
+            width: 38px;
+            height: 38px;
+        }
+
+        .title-mobile {
+            opacity: 1;
+        }
+    }
+
+    #load-content {
+        width: 100%;
+        height: calc(100vh - 80px);
+        top: 80px;
+        right: 0;
+        z-index: 0;
+
+        .container {
+            background: #fff;
+            padding: 10px;
+            width: 100vw;
+            height: calc(100vh - 80px);
+
+            .arrow {
+                width: 60px;
+                right: 5%;
+                bottom: -2vh;
+                z-index: -2;
+            }
+
+            .wallet-bg {
+                width: 100%;
+                height: calc(100vh - 80px);
+                background: url('../img/wallet-bg.png') right 20vh no-repeat;
+                background-size: 75%;
+            }
+
+            .node-bg {
+                width: 100%;
+                height: calc(100vh - 80px);
+                background: url('../img/node-bg.png') -35vw 5vh no-repeat;
+                background-size: cover;
+            }
+
+            .title {
+                top: 80px;
+                left: 10px;
+                font-size: 12px;
+            }
+
+            .line {
+                top: auto;
+                bottom: calc(50vh - 20px);
+                left: 10px;
+                width: 25px;
+                height: 6px;
+            }
+
+            .main-text {
+                font-size: 12px;
+                top : auto;
+                left: 10px;
+                bottom: 20px;
+                line-height: 1.9;
+            }
+
+            .sub-text {
+                right: 10px;
+                top: 10px;
+                font-size: 8px;
+                line-height: 1.9;
+            }
+
+            &.container-01 {
+                top: 0;
+                right: 0;
+                z-index: 10;
+
+                &.prepare {
+                    -webkit-transform: translateX(-100vw);
+                    transform: translateX(-100vw);
+                }
+            }
+
+            &.container-02 {
+                -webkit-transform: translateX(100vw);
+                transform: translateX(100vw);
+
+                &.active {
+                    -webkit-transform: translateX(0);
+                    transform: translateX(0);
+                }
+
+                &.prepare {
+                    -webkit-transform: translateX(-100vw);
+                    transform: translateX(-100vw);
+                }
+
+                .title-text {
+                    top: auto;
+                    left: 10px;
+                    bottom: 20px;
+                    font-size: 18px;
+
+                    .info {
+                        font-size: 12px;
+                        line-height: 1.9;
+                    }
+                }
+
+                .mockup {
+                    position: absolute;
+                    top: 0px;
+                    left: 0;
+                    width: 120vw;
+                    height: 100vh;
+                    overflow-x: hidden;
+
+                    .mockup-img {
+                        display: block;
+                        width: 120vw;
+                        position: absolute;
+                        right: 15vw;
+                        top: 3vh;
+                    }
+                }
+            }
+
+            &.container-03 {
+                -webkit-transform: translateX(100vw);
+                transform: translateX(100vw);
+
+                &.active {
+                    -webkit-transform: translateX(0);
+                    transform: translateX(0);
+                }
+
+                .app-icon {
+                    width: 120px;
+                    height: 120px;
+                    left: calc(50% - 60px);
+                    top: 16vh;
+
+                    &.wallet {
+                        background: #fff url('../img/wallet-logo.svg') center center no-repeat;
+                    }
+
+                    &.node {
+                        background: #fff url('../img/node-logo.svg') center center no-repeat;
+                    }
+                }
+
+                .app-info {
+                    width: 100%;
+                    padding: 35vh 0 0;
+
+                    p {
+                        font-size: 12px;
+                        margin-bottom: 20vw;
+                        line-height: 1.7;
+                    }
+
+                    img {
+                        width: 130px;
+                    }
+                }
+
+                .main-app {
+                    text-align: center;
+                    width: 100%;
+                    height: calc(100vh - 80px);
+                    position: relative;
+
+                    &.wallet {
+                        background: url('../img/wallet-app.png') center 5vh no-repeat;
+                        background-size: 60%;
+                    }
+
+                    &.node {
+                        background: url('../img/node-app.png') center 5vh no-repeat;
+                        background-size: 60%;
+                    }
+                }
+
+                .wallet-bg {
+                    width: 100vw;
+                    height: calc(100vh - 40px);
+                    background: url('../img/wallet-bg.png') 50vw top no-repeat;
+                    background-size: 80%;
+
+                    &.wallet-bg-sm {
+                        background: url('../img/wallet-bg-02.png') 0 65vh no-repeat;
+                        background-size: 35%;
+                    }
+                }
+
+                .node-bg {
+                    width: 100vw;
+                    height: calc(100vh - 80px);
+                    background: url('../img/node-bg-02.png') right bottom no-repeat;
+                    background-size: 130%;
+                }
+            }
+        }
+
+        &.node::-webkit-scrollbar-thumb {
+            background: $pri;
+        }
+
+        &.wallet::-webkit-scrollbar-thumb {
+            background: $second;
+        }
+
+        #loaded-content {
+            width: 200%;
+
+            &.node {
+                .logo-img {
+                    width: 170px;
+                }
+            }
+
+            &.wallet {
+                .logo-img {
+                    width: 130px;
+                }
+            }
+
+            .indicator {
+                width: 100vw;
+                height: 6px;
+
+                .indicator-inner {
+                    height: 6px;
+                }
+            }
+
+            .phone-container {
+                width: 65vw;
+                left: calc(50% - 35vw);
+                top: 11vh;
+            }
+        }
+    }
+}
